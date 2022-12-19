@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puente_arcoiris/home.dart';
 import 'package:puente_arcoiris/login.dart';
 import 'package:puente_arcoiris/splash.dart';
 
@@ -13,11 +14,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: Splash(),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
       routes: <String, WidgetBuilder>{
         "/inicio": (BuildContext context) => MyHomePage(title: 'Flutter'),
-        "/login": (BuildContext context) => Login()
+        "/login": (BuildContext context) => Login(),
+        "/home": (BuildContext context) => Home(),
       },
     );
   }
@@ -55,14 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
 
-    final botonSignin = new ElevatedButton(
+    final botonTutorial = new ElevatedButton(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
-            Icon(Icons.login_outlined),
+            Icon(Icons.book_rounded),
             SizedBox(width: 10),
-            Text("SIGIN"),
+            Text("TUTORIAL"),
           ],
         ),
       ),
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     botonLogin,
-                    botonSignin,
+                    botonTutorial,
                   ],
                 )
               ],

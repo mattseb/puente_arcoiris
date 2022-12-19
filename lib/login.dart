@@ -25,34 +25,45 @@ class Login extends StatelessWidget {
                       fontStyle: FontStyle.italic),
                 ),
                 CircleAvatar(
-                  backgroundColor: Colors.white,
                   radius: 100,
-                  backgroundImage: AssetImage('assets/perro_perfil.png'),
+                  backgroundColor: Colors.black,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 95,
+                    backgroundImage: AssetImage('assets/perro_perfil.png'),
+                  ),
                 ),
                 Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Ingrese su usuario",
-                        labelText: "Usuario",
-                        fillColor: Colors.white,
-                        filled: true,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Ingrese su usuario",
+                          labelText: "Usuario",
+                          fillColor: Colors.white,
+                          filled: true,
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: "Ingrese su contraseña",
-                          labelText: "Contraseña",
-                          fillColor: Colors.white,
-                          filled: true),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            hintText: "Ingrese su contraseña",
+                            labelText: "Contraseña",
+                            fillColor: Colors.white,
+                            filled: true),
+                      ),
                     ),
                   ],
                 ),
                 ElevatedButton(
-                    onPressed: () => print("hola"), child: Text("Ingresar"))
+                    onPressed: () => Navigator.pushNamed(context, "/home"),
+                    child: Text("Login"))
               ],
             ),
           ),
