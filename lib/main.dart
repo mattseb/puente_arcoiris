@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:puente_arcoiris/home.dart';
 import 'package:puente_arcoiris/login.dart';
 import 'package:puente_arcoiris/splash.dart';
+import 'package:puente_arcoiris/widget_tree.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -79,32 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
         backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 50, top: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Puente Arcoiris',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Color.fromRGBO(249, 142, 44, 1),
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontStyle: FontStyle.italic),
-                ),
-                Image(image: AssetImage('assets/perro.png')),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    botonLogin,
-                    botonTutorial,
-                  ],
-                )
-              ],
-            ),
-          ),
-        ));
+        body: Center(child: WidgetTree()));
   }
 }

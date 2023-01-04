@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1006626861958",
+    "project_id": "puente-arcoiris-77da3",
+    "storage_bucket": "puente-arcoiris-77da3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006626861958:android:e4a3793f939b41c4577207",
+        "android_client_info": {
+          "package_name": "com.example.puente_arcoiris"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006626861958-9763filf7lupebkuv0qjkk23mavdk4oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDOjjkcxgXVGqyM5hoa3SF-LLwZ21H0KI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006626861958-9763filf7lupebkuv0qjkk23mavdk4oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
