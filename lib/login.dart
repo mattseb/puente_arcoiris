@@ -82,51 +82,54 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 50, top: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  'Puente Arcoiris',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Color.fromRGBO(249, 142, 44, 1),
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontStyle: FontStyle.italic),
-                ),
-                CircleAvatar(
-                  radius: 100,
-                  backgroundColor: Colors.black,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 95,
-                    backgroundImage: AssetImage('assets/perro_perfil.png'),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 50, top: 50),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(
+                    'Puente Arcoiris',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromRGBO(249, 142, 44, 1),
+                        fontSize: 20,
+                        fontFamily: "Inter",
+                        fontStyle: FontStyle.italic),
                   ),
-                ),
-                Column(
-                  children: [
-                    Padding(
+                  CircleAvatar(
+                    radius: 100,
+                    backgroundColor: Colors.black,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 95,
+                      backgroundImage: AssetImage('assets/perro_perfil.png'),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                          child: _entryField("Correo", _controllerEmail)),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                        child: _entryField("Correo", _controllerEmail)),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                      child: _entryField("Contraseña", _controllerPassword),
-                    ),
-                    _submitButton(),
-                    _loginOrRegisterButton(),
-                  ],
-                ),
-                _errorMessage(),
-                // ElevatedButton(
-                //     onPressed: () => Navigator.pushNamed(context, "/home"),
-                //     child: Text("Login"))
-              ],
+                        child: _entryField("Contraseña", _controllerPassword),
+                      ),
+                      _submitButton(),
+                      _loginOrRegisterButton(),
+                    ],
+                  ),
+                  _errorMessage(),
+                  // ElevatedButton(
+                  //     onPressed: () => Navigator.pushNamed(context, "/home"),
+                  //     child: Text("Login"))
+                ],
+              ),
             ),
           ),
         ));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:puente_arcoiris/auth.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -10,9 +11,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   static List<String> _images = [
-    "assets/perro1.jpg",
-    "assets/perro2.jpg",
-    "assets/perro3.jpg"
+    "assets/slider/perro1.jpg",
+    "assets/slider/perro2.jpg",
+    "assets/slider/perro3.jpg"
   ];
   int _selectedIndex = 2;
   static TextStyle optionStyle = TextStyle(
@@ -33,8 +34,11 @@ class _HomeState extends State<Home> {
               children: [
                 Container(
                   width: 100,
-                  child: Image(
-                    image: AssetImage("assets/perro1.jpg"),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Image(
+                      image: AssetImage("assets/paseos/paseos1.jpg"),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -87,6 +91,7 @@ class _HomeState extends State<Home> {
                       height: 10,
                     ),
                     Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
                           "Promoción: ",
@@ -94,7 +99,10 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("Baño a mitad de precio")
+                        Text(
+                          "Baño a mitad de \nprecio",
+                          // softWrap: true,
+                        ),
                       ],
                     ),
                   ],
@@ -113,7 +121,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro2.jpg"),
+                    image: AssetImage("assets/paseos/paseos2.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -173,7 +181,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("Baño y corte de pelo gratis")
+                        Text("Baño y corte de pelo \ngratis")
                       ],
                     ),
                   ],
@@ -192,7 +200,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro3.jpg"),
+                    image: AssetImage("assets/paseos/paseos3.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -253,7 +261,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                            "3 baños, 1 corte de pelo y \nrevisión veterinaria gratis")
+                            "3 baños, 1 corte de \npelo y revisión \nveterinaria gratis")
                       ],
                     ),
                   ],
@@ -310,7 +318,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro1.jpg"),
+                      image: AssetImage("assets/paseos/paseos1.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -324,7 +332,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro1.jpg"),
+                      image: AssetImage("assets/paseos/paseos2.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -338,7 +346,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro1.jpg"),
+                      image: AssetImage("assets/paseos/paseos3.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -367,7 +375,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro2.jpg"),
+                      image: AssetImage("assets/banios/banios1.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -381,7 +389,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro2.jpg"),
+                      image: AssetImage("assets/banios/banios2.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -395,7 +403,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/perro2.jpg"),
+                      image: AssetImage("assets/banios/banios3.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -424,7 +432,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/vet1.png"),
+                      image: AssetImage("assets/veterinaria/veterinaria1.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -438,7 +446,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/vet2.png"),
+                      image: AssetImage("assets/veterinaria/veterinaria2.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -452,7 +460,7 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     child: Image(
-                      image: AssetImage("assets/vet3.png"),
+                      image: AssetImage("assets/veterinaria/veterinaria3.jpg"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -479,7 +487,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro1.jpg"),
+                    image: AssetImage("assets/veterinaria/veterinaria1.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -558,7 +566,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro2.jpg"),
+                    image: AssetImage("assets/veterinaria/veterinaria2.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -605,7 +613,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                            "2 consutlas, 2 desparatizaciones y 5 vacunas (eleccion)")
+                            "2 consutlas, \n2 desparatizaciones y \n5 vacunas (eleccion)")
                       ],
                     ),
                     SizedBox(
@@ -619,7 +627,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("2 paseos y corte de pelo gratis")
+                        Text("2 paseos y corte de \npelo gratis")
                       ],
                     ),
                   ],
@@ -638,7 +646,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro3.jpg"),
+                    image: AssetImage("assets/veterinaria/veterinaria3.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -685,7 +693,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                            "4 baños. 4 desparasitaciones, 6 corte de uñas y 5 vacunas (eleccion)")
+                            "4 baños. \n4 desparasitaciones, \n6 corte de uñas y \n5 vacunas (eleccion)")
                       ],
                     ),
                     SizedBox(
@@ -699,7 +707,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("5 paseos, 6 corte de pelo y 6 baños gratis")
+                        Text("5 paseos, \n6 corte de pelo y \n6 baños gratis")
                       ],
                     ),
                   ],
@@ -726,7 +734,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro1.jpg"),
+                    image: AssetImage("assets/banios/banios1.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -786,7 +794,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("Baño a mitad de precio")
+                        Text("Baño a mitad de \nprecio")
                       ],
                     ),
                   ],
@@ -805,7 +813,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro2.jpg"),
+                    image: AssetImage("assets/banios/banios2.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -865,7 +873,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("2 paseos y corte de pelo gratis")
+                        Text("2 paseos y corte de \npelo gratis")
                       ],
                     ),
                   ],
@@ -884,7 +892,7 @@ class _HomeState extends State<Home> {
                 Container(
                   width: 100,
                   child: Image(
-                    image: AssetImage("assets/perro3.jpg"),
+                    image: AssetImage("assets/banios/banios3.jpg"),
                   ),
                 ),
                 SizedBox(
@@ -945,7 +953,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                            "3 paseos, 2 cortes de pelo gratis y \nrevisión veterinaria gratis")
+                            "3 paseos, 2 cortes de \npelo gratis y \nrevisión veterinaria \ngratis")
                       ],
                     ),
                   ],
@@ -969,20 +977,26 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(117, 58, 3, 1),
         title: Icon(Icons.donut_large),
+        actions: [
+          FloatingActionButton(
+            onPressed: () {
+              Auth().signOut();
+            },
+            child: Icon(Icons.outbond),
+          )
+        ],
       ),
       body: Container(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-            icon: Icon(
-              Icons.nordic_walking_outlined,
-            ),
+            icon: ImageIcon(AssetImage("assets/iconos/paseo.png")),
             label: 'Paseos',
           ),
           BottomNavigationBarItem(
             backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-            icon: Icon(Icons.details_sharp),
+            icon: ImageIcon(AssetImage("assets/iconos/funeral.png")),
             label: 'Muerte',
           ),
           BottomNavigationBarItem(
@@ -992,12 +1006,12 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-            icon: Icon(Icons.volunteer_activism),
+            icon: ImageIcon(AssetImage("assets/iconos/vet.png")),
             label: 'Veterinaria',
           ),
           BottomNavigationBarItem(
             backgroundColor: Color.fromRGBO(254, 246, 234, 1),
-            icon: Icon(Icons.shower_rounded),
+            icon: ImageIcon(AssetImage("assets/iconos/banios.png")),
             label: 'Baños',
           ),
         ],
