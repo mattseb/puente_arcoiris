@@ -481,7 +481,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-
       //Veteriinaria
       SingleChildScrollView(
         child: Padding(
