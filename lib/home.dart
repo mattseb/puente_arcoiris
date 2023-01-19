@@ -1,4 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:puente_arcoiris/auth.dart';
 
@@ -13,6 +15,7 @@ class _HomeState extends State<Home> {
     "assets/slider/perro2.jpg",
     "assets/slider/perro3.jpg"
   ];
+
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -24,253 +27,285 @@ class _HomeState extends State<Home> {
     });
   }
 
+  Future<Map<String, dynamic>?> selectFromFirebase(
+      String tipoPlan, String tipoTipo) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection("planes")
+        .doc(
+          tipoPlan,
+        )
+        .collection("tipos")
+        .doc(tipoTipo)
+        .get();
+
+    Map<String, dynamic>? data = snapshot.data();
+    print(data);
+    print(data!['valor'] ?? "no hay data");
+
+    return data;
+  }
+
   _HomeState() {
+    var paseoOro = selectFromFirebase('paseos', 'oro');
+    var paseoPlata = selectFromFirebase('paseos', 'plata');
+    var paseoPlatino = selectFromFirebase('paseos', 'platino');
     _widgetOptions = <Widget>[
       SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Text(
-                'Paseos paquete plata',
-                style: optionStyle,
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 100,
-                    child: Image(
-                      image: AssetImage("assets/paseos/paseos1.jpg"),
+          child: FutureBuilder(
+            future: paseoOro,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  children: [
+                    Text(
+                      'Paseos paquete plata',
+                      style: optionStyle,
                     ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Valor: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Image(
+                            image: AssetImage("assets/paseos/paseos1.jpg"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Valor: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(snapshot.data!["valor"].toString() ??
+                                    "Sin datos")
+                              ],
                             ),
-                          ),
-                          Text("40.0")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Tiempo Limite: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                          Text("1 mes")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Paseos: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            Row(
+                              children: [
+                                Text(
+                                  "Tiempo Limite: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("1 mes")
+                              ],
                             ),
-                          ),
-                          Text("4 paseos")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            "Promoción: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                          Text(
-                            "Baño a mitad de \nprecio",
-                            // softWrap: true,
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                'Paseos paquete Oro',
-                style: optionStyle,
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 100,
-                    child: Image(
-                      image: AssetImage("assets/paseos/paseos2.jpg"),
+                            Row(
+                              children: [
+                                Text(
+                                  "Paseos: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("4 paseos")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  "Promoción: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "Baño a mitad de \nprecio",
+                                  // softWrap: true,
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Valor: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("90.0")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Tiempo Limite: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("2 meses")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Paseos: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("8 paseos")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Promoción: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("Baño y corte de pelo \ngratis")
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                'Paseos paquete Platino',
-                style: optionStyle,
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 100,
-                    child: Image(
-                      image: AssetImage("assets/paseos/paseos3.jpg"),
+                    SizedBox(
+                      height: 40,
                     ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Valor: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Text(
+                      'Paseos paquete Oro',
+                      style: optionStyle,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Image(
+                            image: AssetImage("assets/paseos/paseos2.jpg"),
                           ),
-                          Text("250.0")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Tiempo Limite: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Valor: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("gola")
+                              ],
                             ),
-                          ),
-                          Text("5 meses")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Paseos: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                          Text("20 paseos")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Promoción: ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            Row(
+                              children: [
+                                Text(
+                                  "Tiempo Limite: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("2 meses")
+                              ],
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Paseos: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("8 paseos")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Promoción: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("Baño y corte de pelo \ngratis")
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      'Paseos paquete Platino',
+                      style: optionStyle,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Image(
+                            image: AssetImage("assets/paseos/paseos3.jpg"),
                           ),
-                          Text(
-                              "3 baños, 1 corte de \npelo y revisión \nveterinaria gratis")
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              )
-            ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Valor: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("250.0")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Tiempo Limite: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("5 meses")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Paseos: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("20 paseos")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Promoción: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                    "3 baños, 1 corte de \npelo y revisión \nveterinaria gratis")
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                Text("No hay datos disponibles");
+              }
+              return CircularProgressIndicator();
+            },
           ),
         ),
       ),
